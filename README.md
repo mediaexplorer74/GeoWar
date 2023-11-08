@@ -1,8 +1,8 @@
 # GeoWar
-
+My veery quick W10M port of [Nixxs's GeoWar](https://github.com/Nixxs/GeoWar) project.
 
 ## Screenshot(s) (Target: win 11 on desktop pc, not W10M yet)
-![Button](Images/Q01.png)
+![Button](Images/shot01.png)
 
 ## About
 https://gamedevelopment.tutsplus.com/tutorials/make-a-neon-vector-shooter-in-xna-basic-gameplay--gamedev-9859
