@@ -2,7 +2,7 @@
 ![](Images/logo.png)
 
 ## About
-This is my *veerey quuuick* W10M port of [Nixxs's GeoWar](https://github.com/Nixxs/GeoWar) project. :)
+This is my *veeery quuuick* W10M port of [Nixxs's GeoWar](https://github.com/Nixxs/GeoWar) project. :)
 
 Main goal: do some testing/exploration of new "native" (not mine) MonoGame.Framework.WindowsUniversal v3.7.1.189 package 
 
