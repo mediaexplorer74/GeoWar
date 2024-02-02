@@ -18,7 +18,7 @@ https://www.youtube.com/channel/UCdbQJRNyC7JdgvsxZLNhCzw
 ## Status of my GeoWar porting
 - Main W10M device : Lumia 950; sdk 15063+ (Last) - all ok and touchscreen reacted .. but no screen rescaling :( 
 - Secondary W10M device : sdk 10240 (Astoria) ready but touchscreen not reacted (very strange... possible reason: not tweaked MonoGame.Framework.WindowsUniversal package!)
-- Game sounds - fixed
+- Game sounds - fixed (some support of cool fx effects discovered... but no background music??)
 - Game speed -- fixed too :)
 - Original kbd control still presend for desktop mode 
 - Fullscreen mode not distorted "header"/"footer" -- so interesting :)
@@ -28,7 +28,7 @@ https://gamedevelopment.tutsplus.com/tutorials/make-a-neon-vector-shooter-in-xna
 
 ## ToDo
 - Explore Assets folder
-- See Content: maybe, double resources (soundes, images end fx effects!)
+- See Content: maybe, double resources (soundes, images and fx effects!)
 
 ## .
 As is. Learn purposes only
