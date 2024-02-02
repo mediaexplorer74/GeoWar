@@ -8,7 +8,7 @@ Main goal: do some testing/exploration of new "native" (not mine) MonoGame.Frame
 
 ## Screenshot(s) 
 ![](Images/shot01.png)
-![](Images/shot01.png)
+![](Images/shot02.png)
 
 ## How to create this UWP XNA game?
 Follow the Something Random youtube channel for development updates: 
