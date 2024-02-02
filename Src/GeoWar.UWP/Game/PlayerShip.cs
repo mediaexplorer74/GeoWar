@@ -85,7 +85,7 @@ namespace GeoWar
             if (PlayerStatus.IsGameOver)
             {
                 // this is the time before the player with spawn again into a new game after he presses the A
-                // button or the enter key aftter a game over screen
+                // button or the enter key after a game over screen
                 timeUntilRespawn = 250;
                 if (Input.WasButtonPressed(Buttons.A) || Input.WasKeyPressed(Keys.Enter))
                 {
@@ -110,7 +110,7 @@ namespace GeoWar
 
             // need to consider changing this to use time instead of update cycles
             // eg velocity needs to be distance/second instead of distance per update cycle
-            const float speed = 520; // speed is the multiplier for the movement direction
+            const float speed = 52;// 0; // speed is the multiplier for the movement direction
             Velocity = speed * Input.GetMovementDirection(); // velocity is the final delta value to move the player from his current position to his new position between update cycles
             Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
             // this is a smart way to limit the movement of the ship to the inside of the screen extents

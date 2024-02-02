@@ -74,7 +74,7 @@ namespace GeoWar
             // the enemies will have a constant acceleration applied to them each update which will
             // result in the enemy speeding up to infinity over time. This is to limit that accelleration
             // to a terminal velocity. it's like setting friction.
-            Velocity = Velocity * 0.9f;
+            Velocity = Velocity * 0.3f;//0.9f;
         }
 
         // when this is run, it will kill off the enemy
@@ -101,7 +101,8 @@ namespace GeoWar
             // as the distance between the two enemies increases after a collision we reduce the acceleration
             // applied. As direction.lengthsquard gets larger as the two objects move away rom each other the
             // acceleration applied gradually gets smaller too
-            Velocity += 70000 * (direction / (direction.LengthSquared() + 1)) * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            Velocity += 70000 * (direction / (direction.LengthSquared() + 1))
+                * (float)gameTime.ElapsedGameTime.TotalSeconds;
         }
 
         // method for adding behaviours to the behaviour list
@@ -133,7 +134,7 @@ namespace GeoWar
             // create the new enemy object initialize it with starting position and point value
             Enemy enemy = new Enemy(Art.Seeker, position, 2);
             // add the behaviour for a seeker
-            enemy.AddBehaviour(enemy.FollowPlayer(2800f, gameTime));
+            enemy.AddBehaviour(enemy.FollowPlayer(/*2800f*/700f, gameTime));
 
             return enemy;
         }
@@ -141,7 +142,7 @@ namespace GeoWar
         public static Enemy CreateWanderer(Vector2 position, GameTime gameTime)
         {
             Enemy enemy = new Enemy(Art.Wanderer, position, 1);
-            enemy.AddBehaviour(enemy.MoveRandomly(4000f, gameTime));
+            enemy.AddBehaviour(enemy.MoveRandomly(/*4000f*/1000f, gameTime));
             return enemy;
         }
 
@@ -153,7 +154,8 @@ namespace GeoWar
                 // get the vector for the ships position relative to the current postion
                 // then scale it down to the acceleration value 
                 // need to normalize this increase in velocity by time as well so that it runs the same on all machine speeds
-                Velocity += (PlayerShip.Instance.Position - Position).ScaleTo(acceleration) * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                Velocity += (PlayerShip.Instance.Position - Position).ScaleTo(acceleration) 
+                    * (float)gameTime.ElapsedGameTime.TotalSeconds;
                 // if the enemy is moving (ie its active, then orientate itself to point to the player/the
                 // direction it's moving in
                 if (Velocity != Vector2.Zero)
@@ -178,6 +180,7 @@ namespace GeoWar
                 for (int i = 0; i < 6; i++)
                 {
                     Velocity += MathUtil.FromPolar(direction, speed) * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    
                     // the orientation for the wanderer doesn't matter because its a circle
                     // all we are doing here is rotating it
                     Orientation -= 6f * (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -186,13 +189,17 @@ namespace GeoWar
                     // minus the width and height of the enemy. doing it this way instead of doing the usual
                     // vector2 clamp allows us to use the bounds.Contains method later to check if the enemy
                     // has moved outside the bounds
+                    
                     var bounds = GameRoot.Viewport.Bounds;
+                    
                     bounds.Inflate(-image.Width, -image.Height);
 
                     // if the enemy is outside the bounds, make it move away from the edge
                     if (bounds.Contains(Position.ToPoint()) == false)
                     {
-                        direction = (GameRoot.ScreenSize / 2 - Position).ToAngle() + rand.NextFloat(-MathHelper.PiOver2, MathHelper.PiOver2);
+                        direction =
+                            (GameRoot.ScreenSize / 2 - Position).ToAngle()
+                            + rand.NextFloat(-MathHelper.PiOver2, MathHelper.PiOver2);
                     }
 
                     yield return 0;

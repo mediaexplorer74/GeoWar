@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Input.Touch;
 using System.Linq;
 
 namespace GeoWar
@@ -10,10 +11,13 @@ namespace GeoWar
         // previous is needed to know when buttons were pressed
         private static KeyboardState keyboardState;
         private static KeyboardState lastKeyboardState;
+        
         private static GamePadState gamepadState;
         private static GamePadState lastGamepadState;
-        private static MouseState mouseState;
-        private static MouseState lastMouseState;
+
+        private static /*MouseState*/TouchCollection mouseState;
+        private static /*MouseState*/TouchCollection lastMouseState;
+
 
         // track whether or not the user is using the mouse or not
         // since we want the mouse icon to disappear when its not being used
@@ -37,7 +41,20 @@ namespace GeoWar
         {
             get
             {
-                return new Vector2(mouseState.Position.X, mouseState.Position.Y);
+                float x = 0f;
+                float y = 0f;
+
+                try
+                {
+                    if (mouseState.IsConnected)
+                    {
+                        x = mouseState[0].Position.X;
+                        y = mouseState[0].Position.Y;
+                    }
+                }
+                catch { }                
+
+                return new Vector2(x, y);
             }
         }
 
@@ -55,7 +72,7 @@ namespace GeoWar
 
             keyboardState = Keyboard.GetState();
             gamepadState = GamePad.GetState(PlayerIndex.One);
-            mouseState = Mouse.GetState();
+            mouseState = TouchPanel.GetState();//Mouse.GetState();
 
             // if the right thumbstick has a value other than zero then it means
             // the player is pushing it. So set IsAimingWithGamepad to true
@@ -87,9 +104,26 @@ namespace GeoWar
             // if the player hasn't touched the keyboard or gamepad aim controls
             // and the mouse has moved since the last update then he must be using the 
             // the mouse to aim to set isAimingWithMouse to true
-            else if (MousePosition != new Vector2(lastMouseState.Position.X, lastMouseState.Position.Y))
+            else
             {
-                isAimingWithMouse = true;
+                float x = 0f;
+                float y = 0f;
+
+                try
+                {
+                    if (lastMouseState.IsConnected)
+                    {
+                        x = lastMouseState[0].Position.X;
+                        y = lastMouseState[0].Position.Y;
+                    }
+                }
+                catch { }
+                              
+
+                if (MousePosition != new Vector2(x, y))
+                {
+                    isAimingWithMouse = true;
+                }
             }
         }
 
@@ -219,7 +253,9 @@ namespace GeoWar
 
         public static bool WasBombButtonPressed()
         {
-            return WasButtonPressed(Buttons.LeftTrigger) || WasButtonPressed(Buttons.RightTrigger) || WasKeyPressed(Keys.Space);
+            return WasButtonPressed(Buttons.LeftTrigger) 
+                || WasButtonPressed(Buttons.RightTrigger) 
+                || WasKeyPressed(Keys.Space) || (mouseState.Count > 0);
         }
     }
 }

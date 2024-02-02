@@ -107,10 +107,10 @@ namespace GeoWar
             }
 
             Score = 0;
-            Multiplier = 1;
-            Lives = 2;
-            scoreForExtraLife = 2000;
-            multiplierTimeLeft = 0;
+            Multiplier = 2;//1;
+            Lives = 5;//2;
+            scoreForExtraLife = 10;// 000;
+            multiplierTimeLeft = 3;// 0;
         }
 
         /// <summary>
@@ -149,7 +149,7 @@ namespace GeoWar
         public static void Update(GameTime gameTime)
         {
             // reset the multiplier clock and value if the player hasn't killed anything for a while 
-            if (Multiplier > 1)
+            if (Multiplier > 5/*1*/)
             {
                 // if the player has a multiplier applied, subtract some time from it when the player kills something
                 // we will increase the multiplier timer

@@ -17,7 +17,8 @@ namespace GeoWar
 
             // if the player is alive and there are less than 200 entities on the screen
             // do this spawn roll every 100millis seconds
-            if ((PlayerShip.Instance.IsDead == false || PlayerStatus.IsGameOver == true) && EntityManager.Count < 200 && timeSinceLastSpawnRoll > spawnFrequency)
+            if ((PlayerShip.Instance.IsDead == false || PlayerStatus.IsGameOver == true)
+                && EntityManager.Count < 200 && timeSinceLastSpawnRoll > spawnFrequency)
             {
                 // reset this back to 0 because we are rolling the spawn now
                 timeSinceLastSpawnRoll = 0;
