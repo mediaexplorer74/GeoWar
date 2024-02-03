@@ -1,4 +1,4 @@
-# GeoWar - Neon branch
+# GeoWar - Neon branch ("NeonShooter" v1.0.14.0)
 ![](Images/logo.png)
 
 ## About
@@ -11,7 +11,7 @@ Main goal: do some testing/exploration of new "native" (not mine/not tweaked) Mo
 ![](Images/shot01.png)
 ![](Images/shot02.png)
 ![](Images/shot03.png)
-![](Images/shot04.png)
+
 
 ## How to create this UWP XNA game?
 Follow the Something Random youtube channel for development updates: 
@@ -26,13 +26,14 @@ https://www.youtube.com/channel/UCdbQJRNyC7JdgvsxZLNhCzw
 - Game speed encreazed to better sync with music theme:)
 - Original kbd control still presend for desktop mode. 
 - Fullscreen mode not distorted "header"/"footer" -- so interesting :)
+- Screen autosizing fixed (Game "autoscale" mode activated ))
 
 ## GameDev: How-to
 https://gamedevelopment.tutsplus.com/tutorials/make-a-neon-vector-shooter-in-xna-basic-gameplay--gamedev-9859
 
 ## ToDo
 - Explore TouchPanel deals
-- Do screen rescaling for better game speed (performance) & UI usability ;)
+- Improve UI usability via some cool game mechanics (for example, on-screen buttons / virtual pad)
 
 ## References
 - https://github.com/Nixxs/GeoWar Nixxs's GeoWar

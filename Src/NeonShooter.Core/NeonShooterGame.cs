@@ -1,3 +1,8 @@
+//-----------------------------------------------------------------------------
+// NeonShooterGame.cs
+//-----------------------------------------------------------------------------
+
+
 using BloomPostprocess;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -15,8 +20,15 @@ namespace NeonShooter
     /// </summary>
     public class NeonShooterGame: Microsoft.Xna.Framework.Game
     {
-		// some helpful static properties
-		public static NeonShooterGame Instance { get; private set; }
+        // Resources for drawing.
+        private GraphicsDeviceManager graphics;
+        private SpriteBatch spriteBatch;
+        Vector2 baseScreenSize = new Vector2(800, 480);
+        private Matrix globalTransformation;
+        int backbufferWidth, backbufferHeight;
+
+        // some helpful static properties
+        public static NeonShooterGame Instance { get; private set; }
 		public static Viewport Viewport 
         { 
             get 
@@ -31,8 +43,8 @@ namespace NeonShooter
             { 
                 return new Vector2
                 (
-                    Viewport.Width, 
-                    Viewport.Height
+                    800/*Viewport.Width*/, 
+                    480/*Viewport.Height*/
                ); 
             } 
         }
@@ -40,8 +52,8 @@ namespace NeonShooter
 		public static ParticleManager<ParticleState> ParticleManager { get; private set; }
 		public static Grid Grid { get; private set; }
 
-		GraphicsDeviceManager graphics;
-		SpriteBatch spriteBatch;
+		//GraphicsDeviceManager graphics;
+		//SpriteBatch spriteBatch;
 		BloomComponent bloom;
 
 		bool paused = false;
@@ -51,10 +63,14 @@ namespace NeonShooter
         {
 			Instance = this;
 			graphics = new GraphicsDeviceManager(this);
-
+#if WINDOWS_PHONE
+            TargetElapsedTime = TimeSpan.FromTicks(333333);
+#endif
             //graphics.PreferredBackBufferWidth = 800;//1920;
             //graphics.PreferredBackBufferHeight = 600;//1080;
             graphics.IsFullScreen = true;// true;
+            graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft
+               | DisplayOrientation.LandscapeRight;// | DisplayOrientation.Portrait;
 
             bloom = new BloomComponent(this);
 			Components.Add(bloom);
@@ -66,6 +82,10 @@ namespace NeonShooter
         {
             this.Content.RootDirectory = "Content";
 
+            //RnD
+            // Create a new SpriteBatch, which can be used to draw textures.
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+
             ParticleManager = new ParticleManager<ParticleState>
                 (1024 * 20, 
                 ParticleState.UpdateParticle
@@ -75,6 +95,9 @@ namespace NeonShooter
             Vector2 gridSpacing = new Vector2((float)Math.Sqrt(
                 Viewport.Width * Viewport.Height / maxGridPoints));
             Grid = new Grid(Viewport.Bounds, gridSpacing);
+
+            //RnD
+            ScalePresentationArea();
 
             base.Initialize();
         }
@@ -104,7 +127,30 @@ namespace NeonShooter
             }
             catch { }
 #endif
+        }//LoadContent
+
+
+        //RnD
+        public void ScalePresentationArea()
+        {
+            //Work out how much we need to scale our graphics to fill the screen
+            backbufferWidth = GraphicsDevice.PresentationParameters.BackBufferWidth - 0; // 40 - dirty hack for Astoria!
+            backbufferHeight = GraphicsDevice.PresentationParameters.BackBufferHeight;
+
+            float horScaling = backbufferWidth / baseScreenSize.X;
+            float verScaling = backbufferHeight / baseScreenSize.Y;
+
+            Vector3 screenScalingFactor = new Vector3(horScaling, verScaling, 1);
+
+            globalTransformation = Matrix.CreateScale(screenScalingFactor);
+
+            System.Diagnostics.Debug.WriteLine("Screen Size - Width["
+                + GraphicsDevice.PresentationParameters.BackBufferWidth + "] " +
+                "Height [" + GraphicsDevice.PresentationParameters.BackBufferHeight + "]");
         }
+
+
+
 
         /// <summary>
         /// Allows the game to run logic such as updating the world,
@@ -113,6 +159,14 @@ namespace NeonShooter
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            //Confirm the screen has not been resized by the user
+            if (backbufferHeight != GraphicsDevice.PresentationParameters.BackBufferHeight ||
+                backbufferWidth != GraphicsDevice.PresentationParameters.BackBufferWidth)
+            {
+                ScalePresentationArea();
+            }
+
+
             GameTime = gameTime;
             Input.Update();
 
@@ -148,19 +202,28 @@ namespace NeonShooter
 
             GraphicsDevice.Clear(Color.Black);
 
-            spriteBatch.Begin(SpriteSortMode.Texture, BlendState.Additive);
+            //RnD
+            spriteBatch.Begin(SpriteSortMode.Texture, BlendState.Additive,//); 
+                null, null, null, null, globalTransformation);
+            
             EntityManager.Draw(spriteBatch);
+            
             spriteBatch.End();
 
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive);
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive,//);
+                 null, null, null, null, globalTransformation);
+
             Grid.Draw(spriteBatch);
+            
             ParticleManager.Draw(spriteBatch);
+            
             spriteBatch.End();
 
             base.Draw(gameTime);
 
             // Draw the user interface without bloom
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive);
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive,//);
+                 null, null, null, null, globalTransformation);
 
             DrawTitleSafeAlignedString("Lives: " + PlayerStatus.Lives, 5);
             DrawTitleSafeRightAlignedString("Score: " + PlayerStatus.Score, 5);
