@@ -19,10 +19,10 @@ namespace GeoWar
 
         /// <summary>
         /// A helpful and tidy load method to load all the textures from a one line
-        /// Art.Load() in the LoadContent() of GameRoot
+        /// Art.Load() in the LoadContent() of GeoWarGame
         /// </summary>
         /// <param name="game"></param>
-        public static void Load(GameRoot instance)
+        public static void Load(GeoWarGame instance)
         {
             _player = instance.Content.Load<Texture2D>("Art\\Player");
             _seeker = instance.Content.Load<Texture2D>("Art\\Seeker");

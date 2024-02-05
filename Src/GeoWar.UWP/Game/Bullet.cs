@@ -30,7 +30,7 @@ namespace GeoWar
 
             // check if the position of the bullet is off screen or not
             // if it is off screen, set IsExpired to true thus removing it from the entity list
-            if (GameRoot.Viewport.Bounds.Contains(Position.ToPoint()) == false)
+            if (GeoWarGame.Viewport.Bounds.Contains(Position.ToPoint()) == false)
             {
                 IsExpired = true;
             }

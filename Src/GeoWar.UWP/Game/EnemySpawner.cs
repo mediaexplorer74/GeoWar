@@ -57,7 +57,7 @@ namespace GeoWar
             // the value
             while (true)
             {
-                pos = new Vector2(rand.Next((int)GameRoot.ScreenSize.X), rand.Next((int)GameRoot.ScreenSize.Y));
+                pos = new Vector2(rand.Next((int)GeoWarGame.ScreenSize.X), rand.Next((int)GeoWarGame.ScreenSize.Y));
 
                 if (Vector2.DistanceSquared(pos, PlayerShip.Instance.Position) < 250 * 250)
                 {

@@ -51,7 +51,7 @@ namespace GeoWar
         private PlayerShip()
         {
             image = Art.Player;
-            Position = GameRoot.ScreenSize / 2;
+            Position = GeoWarGame.ScreenSize / 2;
             Radius = 10;
         }
 
@@ -87,7 +87,10 @@ namespace GeoWar
                 // this is the time before the player with spawn again into a new game after he presses the A
                 // button or the enter key after a game over screen
                 timeUntilRespawn = 250;
-                if (Input.WasButtonPressed(Buttons.A) || Input.WasKeyPressed(Keys.Enter))
+                if (Input.WasButtonPressed(Buttons.A) 
+                    || Input.WasKeyPressed(Keys.Enter)
+                    || Input.WasBombButtonPressed()
+                    )
                 {
                     // set the game over switch to false and reset all the player stats to start a new game
                     PlayerStatus.IsGameOver = false;
@@ -118,7 +121,7 @@ namespace GeoWar
             // whenever he goes beyond these positions. Instead, here we use vector clamp which allows us to
             // set the min and max vectors that the postion variable can be set to. the Size/2 is to account 
             // for the texture half disappearing if it was just set to 0,0 min and screensize max.
-            Position = Vector2.Clamp(Position, Size / 2, GameRoot.ScreenSize - Size / 2);
+            Position = Vector2.Clamp(Position, Size / 2, GeoWarGame.ScreenSize - Size / 2);
 
             // here we are using our helper extension function from the extensions.cs file
             // to return radians of velocity so that we can assign the orientation value

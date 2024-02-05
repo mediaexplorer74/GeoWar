@@ -114,7 +114,7 @@
     <Compile Include="Game\Entity.cs" />
     <Compile Include="Game\EntityManager.cs" />
     <Compile Include="Game\Extensions.cs" />
-    <Compile Include="Game\GameRoot.cs" />
+    <Compile Include="Game\GeoWarGame.cs" />
     <Compile Include="Game\Input.cs" />
     <Compile Include="Game\MathUtil.cs" />
     <Compile Include="Game\PlayerShip.cs" />
@@ -323,27 +323,21 @@
     <Content Include="Content\Sound\Music.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Sound\Music.wma">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="GeoWar.UWP_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.2.14</Version>
+      <Version>6.2.8</Version>
     </PackageReference>
-    <PackageReference Include="MonoGame.Framework.WindowsUniversal">
-      <Version>3.7.1.189</Version>
-    </PackageReference>
-    <PackageReference Include="SharpDX.Direct2D1">
-      <Version>4.2.0</Version>
-    </PackageReference>
-    <PackageReference Include="SharpDX.Direct3D11">
-      <Version>4.2.0</Version>
-    </PackageReference>
-    <PackageReference Include="SharpDX.MediaFoundation">
-      <Version>4.2.0</Version>
-    </PackageReference>
-    <PackageReference Include="SharpDX.XAudio2">
-      <Version>4.2.0</Version>
-    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MonoGame\MonoGame.Framework\MonoGame.Framework.WindowsUAP.csproj">
+      <Project>{09c41a48-7bf3-4a46-9eb8-ce95b4c27ca9}</Project>
+      <Name>MonoGame.Framework.WindowsUAP</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

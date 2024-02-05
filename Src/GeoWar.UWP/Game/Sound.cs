@@ -66,7 +66,7 @@ namespace GeoWar
         public static void Load(ContentManager content)
         {
             // load up the music
-            music = default;// content.Load<Song>("Sound\\Music");
+            music = content.Load<Song>("Sound\\Music");
 
             // load all the explosion sounds to the explosions array
             explosions = new SoundEffect[numberOfExplosionSounds];

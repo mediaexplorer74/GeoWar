@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
+using System;
+using System.Diagnostics;
 using System.Linq;
 
 namespace GeoWar
@@ -17,6 +19,9 @@ namespace GeoWar
 
         private static /*MouseState*/TouchCollection mouseState;
         private static /*MouseState*/TouchCollection lastMouseState;
+
+        private static bool isMouseStateOk = true;
+        private static bool isLastMouseStateOk = true;
 
 
         // track whether or not the user is using the mouse or not
@@ -46,20 +51,24 @@ namespace GeoWar
 
                 try
                 {
-                    if (mouseState.IsConnected)
+                    if (isMouseStateOk)//if (mouseState.IsConnected)
                     {
                         x = mouseState[0].Position.X;
                         y = mouseState[0].Position.Y;
                     }
                 }
-                catch { }                
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("[ex] isMouseStateOk? Result: " + ex.Message);
+                    isMouseStateOk = false;
+                }                
 
                 return new Vector2(x, y);
             }
         }
 
         /// <summary>
-        /// function to run on each update cycle in GameRoot to retrieve the input from 
+        /// function to run on each update cycle in GeoWarGame to retrieve the input from 
         /// the user and move the current state info to the laststate property 
         /// finally we also decide whether or not the user is using the mouse or not
         /// so that we know whether or not to display the mouse icon
@@ -111,14 +120,18 @@ namespace GeoWar
 
                 try
                 {
-                    if (lastMouseState.IsConnected)
+                    if(isLastMouseStateOk) //if (lastMouseState.IsConnected)
                     {
                         x = lastMouseState[0].Position.X;
                         y = lastMouseState[0].Position.Y;
                     }
                 }
-                catch { }
-                              
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("[ex] isLastMouseStateOk? Result: " + ex.Message);
+                    isLastMouseStateOk = false;
+                }
+
 
                 if (MousePosition != new Vector2(x, y))
                 {

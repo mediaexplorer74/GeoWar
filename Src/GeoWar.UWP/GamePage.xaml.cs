@@ -22,7 +22,7 @@ namespace GeoWar.UWP
     /// </summary>
     public sealed partial class GamePage : Page
     {
-		readonly GameRoot _game;
+		readonly GeoWarGame _game;
 
 		public GamePage()
         {
@@ -30,7 +30,7 @@ namespace GeoWar.UWP
 
 			// Create the game.
 			var launchArguments = string.Empty;
-            _game = MonoGame.Framework.XamlGame<GameRoot>.Create(launchArguments, Window.Current.CoreWindow, swapChainPanel);
+            _game = MonoGame.Framework.XamlGame<GeoWarGame>.Create(launchArguments, Window.Current.CoreWindow, swapChainPanel);
         }
     }
 }

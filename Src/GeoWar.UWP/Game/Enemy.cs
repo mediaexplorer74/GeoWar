@@ -69,7 +69,7 @@ namespace GeoWar
             // last update
             Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
             // limit the postion of the enemy to the size of the screen
-            Position = Vector2.Clamp(Position, Size / 2, GameRoot.ScreenSize - Size / 2);
+            Position = Vector2.Clamp(Position, Size / 2, GeoWarGame.ScreenSize - Size / 2);
 
             // the enemies will have a constant acceleration applied to them each update which will
             // result in the enemy speeding up to infinity over time. This is to limit that accelleration
@@ -190,7 +190,7 @@ namespace GeoWar
                     // vector2 clamp allows us to use the bounds.Contains method later to check if the enemy
                     // has moved outside the bounds
                     
-                    var bounds = GameRoot.Viewport.Bounds;
+                    var bounds = GeoWarGame.Viewport.Bounds;
                     
                     bounds.Inflate(-image.Width, -image.Height);
 
@@ -198,7 +198,7 @@ namespace GeoWar
                     if (bounds.Contains(Position.ToPoint()) == false)
                     {
                         direction =
-                            (GameRoot.ScreenSize / 2 - Position).ToAngle()
+                            (GeoWarGame.ScreenSize / 2 - Position).ToAngle()
                             + rand.NextFloat(-MathHelper.PiOver2, MathHelper.PiOver2);
                     }
 
