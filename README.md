@@ -1,4 +1,4 @@
-# GeoWar v1.0.4 (alpha)
+# GeoWar v1.0.5
 ![](Images/logo.png)
 
 ## About
@@ -12,14 +12,15 @@ Main goal: do some testing/exploration of new "native" (not mine) MonoGame.Frame
 ![](Images/shot03.png)
 
 ## Status of my GeoWar porting
-- Main W10M device : Lumia 950; sdk 15063+ (Last) - all ok and touchscreen reacted .. but no screen rescaling :( 
-- Secondary W10M device : sdk 10240 (Astoria) - touchscreen fixed (my own tweaked MonoGame UWP Framework used)
+- Main W10M device : Lumia 950; sdk 15063 (Last) - all ok and touchscreen reacted 
+- Secondary W10M device : sdk 10240 (Astoria) - touchscreen fixed 
 - Game sounds&music - fixed (some support of cool fx effects discovered)
-- Game speed -- fixed too :)
-- Original kbd control still present for desktop mode 
-- Fullscreen mode distorted on Astoria ("header"/"footer" not hide -- game score truncated :)
+- Game speed -- fixed too
+- Original kbd control still present for Ddesktop PC game mode 
+- Fullscreen mode distorted on Astoria ("header"/"footer" not hide -- game score truncated (W10M Astoria bug?)
 - "Screen autoscaling" added (to/for supporting different devices / screen sizes)
 - Content (resources) optimized (reduced from 53 mb to 22mb)
+- Firm MonoGame 3.7 "universal engine" used. Overall game performance improved.
 
 
 ## How to create this UWP XNA game? 

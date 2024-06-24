@@ -20,8 +20,8 @@ namespace GeoWar
         private static /*MouseState*/TouchCollection mouseState;
         private static /*MouseState*/TouchCollection lastMouseState;
 
-        private static bool isMouseStateOk = true;
-        private static bool isLastMouseStateOk = true;
+        //private static bool isMouseStateOk = true;
+        //private static bool isLastMouseStateOk = true;
 
 
         // track whether or not the user is using the mouse or not
@@ -33,7 +33,8 @@ namespace GeoWar
 
         // these are the keyboard controls for aiming, we need this list to track whether
         // or not the user is using them to aim or not
-        private static Keys[] keyboardAimKeys = new Keys[4] { Keys.Up, Keys.Down, Keys.Left, Keys.Right };
+        private static Keys[] keyboardAimKeys = new Keys[4] 
+        { Keys.Up, Keys.Down, Keys.Left, Keys.Right };
 
         // some storage for directions of movement and aiming
         private static Vector2 moveDirection;
@@ -51,7 +52,7 @@ namespace GeoWar
 
                 try
                 {
-                    if (isMouseStateOk)//if (mouseState.IsConnected)
+                    if (mouseState.Count > 0)//(isMouseStateOk)//if (mouseState.IsConnected)
                     {
                         x = mouseState[0].Position.X;
                         y = mouseState[0].Position.Y;
@@ -60,7 +61,7 @@ namespace GeoWar
                 catch (Exception ex)
                 {
                     Debug.WriteLine("[ex] isMouseStateOk? Result: " + ex.Message);
-                    isMouseStateOk = false;
+                    //isMouseStateOk = false;
                 }                
 
                 return new Vector2(x, y);
@@ -120,7 +121,7 @@ namespace GeoWar
 
                 try
                 {
-                    if(isLastMouseStateOk) //if (lastMouseState.IsConnected)
+                    if (lastMouseState.Count > 0)//(isLastMouseStateOk) //if (lastMouseState.IsConnected)
                     {
                         x = lastMouseState[0].Position.X;
                         y = lastMouseState[0].Position.Y;
@@ -129,7 +130,7 @@ namespace GeoWar
                 catch (Exception ex)
                 {
                     Debug.WriteLine("[ex] isLastMouseStateOk? Result: " + ex.Message);
-                    isLastMouseStateOk = false;
+                    //isLastMouseStateOk = false;
                 }
 
 

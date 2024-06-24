@@ -1,57 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
-<Package
-  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
-  xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
-  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
-  IgnorableNamespaces="uap mp">
-
-  <Identity
-    Name="ME.GeoWarV1"
-    Publisher="CN=Admin"
-    Version="1.0.4.0" />
-
-  <mp:PhoneIdentity PhoneProductId="95d8b0c3-4464-403f-a6a9-0ab76de34797" PhonePublisherId="00000000-6400-4400-0000-000000000797"/>
-
+<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
+  <Identity Name="ME.GeoWarV1" Publisher="CN=Admin" Version="1.0.5.0" />
+  <mp:PhoneIdentity PhoneProductId="95d8b0c3-4464-403f-a6a9-0ab76de34797" PhonePublisherId="00000000-6400-4400-0000-000000000797" />
   <Properties>
-    <DisplayName>GeoWar</DisplayName>
+    <DisplayName>GeoWar v1.0.5</DisplayName>
     <PublisherDisplayName>mediaexplorer</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
-
   <Dependencies>
     <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
   </Dependencies>
-
   <Resources>
-    <Resource Language="x-generate"/>
+    <Resource Language="x-generate" />
   </Resources>
-
   <Applications>
-    <Application Id="App"
-      Executable="$targetnametoken$.exe"
-      EntryPoint="GeoWar.UWP.App">
-      <uap:VisualElements
-        DisplayName="GeoWar"
-        Square150x150Logo="Assets\Logo.png"
-        Square44x44Logo="Assets\SmallLogo.png"
-        Description="GeoWar UWP simplest game"
-        BackgroundColor="#464646">
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="GeoWar.UWP.App">
+      <uap:VisualElements DisplayName="GeoWar 1.0.5" Square150x150Logo="Assets\Logo.png" Square44x44Logo="Assets\SmallLogo.png" Description="GeoWar UWP simplest game" BackgroundColor="#464646">
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
-        <uap:DefaultTile Square71x71Logo="Assets\SmallTile.png" Wide310x150Logo="Assets\WideTile.png" Square310x310Logo="Assets\LargeTile.png"/>
+        <uap:DefaultTile Square71x71Logo="Assets\SmallTile.png" Wide310x150Logo="Assets\WideTile.png" Square310x310Logo="Assets\LargeTile.png">
+        </uap:DefaultTile>
         <uap:InitialRotationPreference>
-          <uap:Rotation Preference="landscape"/>
-          <uap:Rotation Preference="portrait"/>
-          <uap:Rotation Preference="landscapeFlipped"/></uap:InitialRotationPreference>
+          <uap:Rotation Preference="portrait" />
+          <uap:Rotation Preference="landscape" />
+          <uap:Rotation Preference="landscapeFlipped" />
+        </uap:InitialRotationPreference>
       </uap:VisualElements>
     </Application>
   </Applications>
-
   <Capabilities>
     <Capability Name="internetClient" />
-    <uap:Capability Name="videosLibrary"/>
-    <uap:Capability Name="picturesLibrary"/>
-    <uap:Capability Name="musicLibrary"/>
-    <uap:Capability Name="removableStorage"/>
+    <uap:Capability Name="videosLibrary" />
+    <uap:Capability Name="picturesLibrary" />
+    <uap:Capability Name="musicLibrary" />
+    <uap:Capability Name="removableStorage" />
   </Capabilities>
 </Package>
