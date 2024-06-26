@@ -1,11 +1,11 @@
-# GeoWar - Neon branch ("NeonShooter" v1.0.15.0)
+# GeoWar - Neon branch ("NeonShooter" v1.0.16.0)
 ![](Images/logo.png)
 
 ## About
 This is my *veeery quuuick* W10M port of [Nixxs's GeoWar](https://github.com/Nixxs/GeoWar) project. 
 I mixed it with MonoGame NeonShooter game sample :)
 
-Main goal: do some testing/exploration of new "native" (not mine/not tweaked) MonoGame.Framework.WindowsUniversal (v3.7.xx or v3.8.xx) package !
+Main goal: do some testing/exploration of new "native" (not mine/not tweaked) MonoGame.Framework.WindowsUniversal (v3.7.1.189) package !
 
 ## Screenshot(s) 
 ![](Images/shot01.png)
@@ -27,6 +27,8 @@ https://www.youtube.com/channel/UCdbQJRNyC7JdgvsxZLNhCzw
 - Original kbd control still presend for desktop mode. 
 - Fullscreen mode not distorted "header"/"footer" -- so interesting :)
 - Screen autosizing fixed (Game "autoscale" mode activated ))
+- Firm MonoGame 3.7 "universal engine" used.
+- vs 2017 compatibility added, and game performance increased a little.
 
 ## GameDev: How-to
 https://gamedevelopment.tutsplus.com/tutorials/make-a-neon-vector-shooter-in-xna-basic-gameplay--gamedev-9859
@@ -41,7 +43,7 @@ https://gamedevelopment.tutsplus.com/tutorials/make-a-neon-vector-shooter-in-xna
 
 
 ## .
-As is. Learn purposes only.
+As is. No support. Learn purposes only. DIY
 
 ## ..
-[m][e] Feb 2024
+[m][e] 2024
